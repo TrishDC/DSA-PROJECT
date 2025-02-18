@@ -160,10 +160,15 @@ public class Main {
                   String searchEngums = jays.nextLine();
                   boolean itemFound = false;
                     for (int i = 0; i < al.size(); i++) {
-                        if (al.get(i).engum.equalsIgnoreCase(searchEngums)) {
-                            al.remove(i);
-                            System.out.println("Stock item deleted successfully.");
+                        Main stock = al.get(i);
+                        if (stock.engum.equalsIgnoreCase(searchEngums)) {
                             itemFound = true;
+                            if (stock.purstat.equalsIgnoreCase("sold") && stock.label.equalsIgnoreCase("old")) {
+                                al.remove(i);
+                                System.out.println("Item found and deleted (was sold and old).");
+                            } else {
+                                System.out.println("Item found but not deleted (not both sold and old).");
+                            }
                             break;
                         }
                     }
